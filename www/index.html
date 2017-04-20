@@ -2,51 +2,80 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>ZIM Frame - Fit Template</title>
-
-<!-- Welcome to ZIM at http://zimjs.com - Code Interactive Media Pizzazz! 				-->
-<!-- ZIM runs on the HTML Canvas powered by JavaScript and CreateJS http://createjs.com -->
-<!-- Founded by Inventor Dan Zen - http://danzen.com - Canadian New Media Award Winner 	-->
-<!-- ZIM is free to use. You can donate to help improve ZIM at http://zimjs.com/donate 	-->
-
-<!-- as of ZIM 4.3.0 load createjs namespace first -->
-<script src="js/createjs-2015.11.26.min.js"></script>
-<script>var zon = true; // true for comments from zim code</script>
-<script src="js/zim_4.8.0.js"></script>
-<!-- use zimjs.com/code/distill for minified individual functions! -->
+<title>MVC APP</title>
 
 <style>
-	body {background-color:#000;}
+	@font-face { 
+		font-family: 'Raleway Light';
+		src: url('assets/Raleway/Raleway-Light.ttf'); 
+	}
+	@font-face { 
+		font-family: 'Raleway Bold';
+		src: url('assets/Raleway/Raleway-Bold.ttf'); 
+	}
 </style>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="scripts/create.js"></script>
+<script src="scripts/zim5.js"></script>
+<script src="scripts/model.js"></script>
+<script src="scripts/view.js"></script>
+<script src="scripts/controller.js"></script>
 
 <script>
 
-// SCALING OPTIONS
-// scaling can have values as follows with full being the default
-// "fit"		sets canvas and stage to dimensions and scales to fit inside window size
-// "outside"	sets canvas and stage to dimensions and scales to fit outside window size
-// "full"		sets stage to window size with no scaling
-// "tagID"		add canvas to HTML tag of ID - set to dimensions if provided - no scaling
-
-var scaling = "fit"; // fit scales to fit the browser window while keeping the aspect ratio
-var width = 768; // can go higher...
-var height = 1024;
-var color = "#acd241";
+var scaling = "full"; // makes stage the window size but does not scale content
+var width = null;
+var height = null;
+var color = "#eaeaea";
 var frame = new zim.Frame(scaling, width, height, color); // see docs for more options and info
 frame.on("ready", function() {
-	zog("ready from ZIM Frame");
 
 	var stage = frame.stage;
 	var stageW = frame.width;
 	var stageH = frame.height;
 
-	// put your code here (you can delete this code)
+  	frame.loadAssets([ 'climbing_white.png', 'climbing_white_small.png', 'climbing_grey_small.png'], 'assets/');
 
-	var circle = new zim.Circle(100, frame.blue)
-		.center(stage)
-		.drag();
+  	frame.on('complete', function(){
 
-	stage.update(); // update the stage to see any changes
+		var layoutManager = new zim.LayoutManager();
+
+		// Define assets
+		var assets = {};
+		assets.logo = frame.asset('climbing_white.png');
+		assets.logoSmall = frame.asset('climbing_white_small.png');
+		assets.logoSmallGrey = frame.asset('climbing_grey_small.png');
+
+		var model = app.makeModel();
+		var view = app.makeView(stage, stageW, stageH, layoutManager, model, assets);
+
+		// PAGES 
+		var pages = new zim.Pages({
+			holder:stage,
+			pages:[
+				{page: view.start, swipe:[view.activity, view.activity, null,null]},
+				{page: view.activity, swipe:[view.start, view.start, null,null]},
+				{page: view.difficulty, swipe:[view.start, view.start, null,null]},
+				{page: view.playlist, swipe:[view.start, view.start, null,null]}
+			],
+			transition:"slide",
+	   		speed:1000
+		});
+		pages.addTo(stage);
+
+		frame.on("resize", function(){
+			layoutManager.resize();
+			pages.resize();
+			view.subpages.resize();
+		});
+
+		// CONTROLLER 
+		var control = app.makeController(frame, stage, view, model, pages);
+
+		stage.update();	
+
+	}); //end complete
 
 }); // end of ready
 </script>
