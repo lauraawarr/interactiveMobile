@@ -6,10 +6,10 @@
         id        = "com.sheridan.imm.collective"
         version   = "1.0.0">
 
-    <name>Interactive Mobile</name>
+    <name>Climb</name>
 
     <description>
-        Interactive Mobile app that drags ball.
+        A training app help users climb harder.
     </description>
 
     <author href="http://laurawarr.ca" email="lauraawarr@gmail.com">
