@@ -15,7 +15,7 @@ var app = function(app){
 		var rest = {};
 		rest.timer = view.playlist.page2.children[0];
 		rest.nextActivity = view.playlist.page2.children[2];
-		
+
 		// Define hotspots 
 		var hotSpots = new zim.HotSpots([
 			{page: view.start, rect: view.start.button, call:function(){
