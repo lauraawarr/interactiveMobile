@@ -54,10 +54,10 @@ frame.on("ready", function() {
 		var pages = new zim.Pages({
 			holder:stage,
 			pages:[
-				{page: view.start, swipe:[view.activity, view.activity, null,null]},
-				{page: view.activity, swipe:[view.start, view.start, null,null]},
-				{page: view.difficulty, swipe:[view.start, view.start, null,null]},
-				{page: view.playlist, swipe:[view.start, view.start, null,null]}
+				{page: view.start, swipe:[view.activity, view.difficulty, null,null]},
+				{page: view.activity, swipe:[null, view.start, null,null]},
+				{page: view.difficulty, swipe:[view.start, null, null,null]},
+				{page: view.playlist, swipe:[null, null, null,null]}
 			],
 			transition:"slide",
 	   		speed:1000

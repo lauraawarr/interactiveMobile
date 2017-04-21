@@ -386,8 +386,8 @@ var app = function(app){
 		var subpages = view.subpages = new zim.Pages({
 			holder: playlist,
 			pages:[
-				{page: playlist.page1, swipe:[null, null, null,null]},
-				{page: playlist.page2, swipe:[null, null, null,null]},
+				{page: playlist.page1, swipe:[null, playlist.page2, null,null]},
+				{page: playlist.page2, swipe:[null, playlist.page1, null,null]},
 			],
 			transition:"slide",
 	   		speed:1000
@@ -415,73 +415,6 @@ var app = function(app){
 				scalingObject: stage
 			})
 		);
-
-
-		////////////////////////////
-
-
-		// PLAYLIST BREAK
-
-		// var playBreak = view.playBreak = new zim.Container( stageW, stageH );
-		// playBreak.name = "Play Break";
-
-		// var playBreakBg = new zim.Rectangle( stageW, stageH, startColor )
-		// 	.addTo(playBreak);
-
-		// var logo5 = playBreak.logo = assets.logoSmall.clone();
-		// playBreak.addChild(logo5);
-
-		// var playBreakContent = new zim.Container(500,500)
-		// 	.addTo(playBreak);
-		// var timer = new zim.Label({
-		// 	text: '0:05', 
-		// 	color: timerColor,
-		// 	font: timerFont,
-		// 	fontOptions: "small-caps",
-		// 	size: 200})
-		// 	.center(playBreakContent);
-		// timer.y -= 100;
-
-		// var next = new zim.Label({
-		// 	text: 'NEXT ACTIVITY', 
-		// 	color: timerColor,
-		// 	font: "Raleway Light, sans-serif",
-		// 	fontOptions: "small-caps",
-		// 	size: 30})
-		// 	.center(playBreakContent);
-		// next.y += 90;
-		// next.x -= 110;
-
-		// var nextActivity = new zim.Label({
-		// 	text: 'PLANK', 
-		// 	color: timerColor,
-		// 	font: "Raleway Light, sans-serif",
-		// 	fontOptions: "small-caps",
-		// 	size: 80})
-		// 	.center(playBreakContent);
-		// nextActivity.y += 170;
-
-		// var footer5 = new zim.Container(500, 100)
-		// 	.addTo(playBreak);
-
-		// var backButton = playBreak.backButton = createBackTab( footer5 , "QUIT");
-
-		// // PLAYBREAK LAYOUT
-
-		// layoutManager.add(
-		// 	new zim.Layout({
-		// 		holder: playBreak,
-		// 		regions: [
-		// 			{object: logo5, marginTop: 2, maxWidth: 96, height: 10, align: "left", valign: "top"},
-		// 			{object:playBreakContent, marginTop:5, maxWidth:80, align: "center"},
-		// 			{object:footer5, marginTop:5, maxWidth:80, height:20}
-		// 		],
-		// 		lastMargin: 3,
-		// 		// regionShape: new zim.Shape(),
-		// 		scalingObject: stage
-		// 	})
-		// );
-
 
 		
 		return view;

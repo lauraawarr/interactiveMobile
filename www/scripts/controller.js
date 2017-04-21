@@ -15,19 +15,7 @@ var app = function(app){
 		var rest = {};
 		rest.timer = view.playlist.page2.children[0];
 		rest.nextActivity = view.playlist.page2.children[2];
-
-
-		// Slide between pages
-		// frame.on('keydown', function( ev ){
-		// 	if (ev.keyCode == 32){
-		// 		if (view.subpages.page == view.playlist.page1){
-		// 			view.subpages.go(view.playlist.page2, "right", "slide", 800);
-		// 		} else if (view.subpages.page == view.playlist.page2){
-		// 			view.subpages.go(view.playlist.page1, "right", "slide", 800);
-		// 		}
-		// 	}
-		// })
-
+		
 		// Define hotspots 
 		var hotSpots = new zim.HotSpots([
 			{page: view.start, rect: view.start.button, call:function(){
